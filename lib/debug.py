@@ -1,13 +1,13 @@
-#!/usr/bin/env python3
-import ipdb;
+from classes.many_to_many import Author, Magazine, Article
 
-from classes.many_to_many import Article
-from classes.many_to_many import Author
-from classes.many_to_many import Magazine
+author1 = Author("Anna Wintour")
+author2 = Author("Hamish Bowles")
+mag1 = Magazine("Vogue", "Fashion")
+mag2 = Magazine("GQ", "Men's Fashion")
 
-if __name__ == '__main__':
-    print("HELLO! :) let's debug :vibing_potato:")
+author1.add_article(mag1, "Spring Fashion Trends 2025")
+author2.add_article(mag1, "The Art of Haute Couture")
+author2.add_article(mag1, "Sustainable Fashion Futures")
+author2.add_article(mag2, "Best Dressed Men of the Year")
 
-
-    # don't remove this line, it's for debugging!
-    ipdb.set_trace()
+import ipdb; ipdb.set_trace()

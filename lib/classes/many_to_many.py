@@ -1,38 +1,29 @@
-class Article:
-    def __init__(self, author, magazine, title):
-        self.author = author
-        self.magazine = magazine
-        self.title = title
-        
-class Author:
-    def __init__(self, name):
-        self.name = name
+from .author import Author
+from .magazine import Magazine
+from .article import Article
 
-    def articles(self):
-        pass
+class ManyToManyDemo:
+    def __init__(self):
+        self.author1 = Author("Anna Wintour")
+        self.author2 = Author("Hamish Bowles")
+        self.author3 = Author("Grace Coddington")
+        self.mag1 = Magazine("Vogue", "Fashion")
+        self.mag2 = Magazine("GQ", "Men's Fashion")
+        self.mag3 = Magazine("Elle", "Fashion")
 
-    def magazines(self):
-        pass
+        self.author1.add_article(self.mag1, "Spring Fashion Trends 2025")
+        self.author1.add_article(self.mag3, "Summer Style Essentials")
+        self.author2.add_article(self.mag1, "The Art of Haute Couture")
+        self.author2.add_article(self.mag1, "Sustainable Fashion Futures")
+        self.author2.add_article(self.mag2, "Best Dressed Men of the Year")
+        self.author3.add_article(self.mag1, "Iconic Fashion Photography")
 
-    def add_article(self, magazine, title):
-        pass
+    def demonstrate_relationships(self):
+        print(f"{self.author1.name}'s magazines: {[mag.name for mag in self.author1.magazines()]}")
+        print(f"{self.mag1.name}'s contributors: {[author.name for author in self.mag1.contributors()]}")
+        print(f"{self.mag1.name}'s contributing authors: "
+              f"{[author.name for author in self.mag1.contributing_authors() or []]}")
 
-    def topic_areas(self):
-        pass
-
-class Magazine:
-    def __init__(self, name, category):
-        self.name = name
-        self.category = category
-
-    def articles(self):
-        pass
-
-    def contributors(self):
-        pass
-
-    def article_titles(self):
-        pass
-
-    def contributing_authors(self):
-        pass
+if __name__ == "__main__":
+    demo = ManyToManyDemo()
+    demo.demonstrate_relationships()
